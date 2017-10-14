@@ -29,7 +29,6 @@ variable "rds_instance_class" {
 }
 
 variable "publicly_accessible" {
-  type    = "boolean"
   default = false
 }
 
