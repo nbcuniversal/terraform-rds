@@ -53,7 +53,6 @@ resource "aws_db_subnet_group" "main" {
   tags {
     Budget      = "${var.budget}"
     Environment = "${var.environment}"
-    RdsCluster  = "${aws_rds_cluster.main.id}"
   }
 
   lifecycle {
