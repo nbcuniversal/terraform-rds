@@ -35,3 +35,5 @@ variable "publicly_accessible" {
 variable "subnet_ids" {
   description = "Comma delimited list of subnet IDs"
 }
+
+variable "vpc_security_group_ids" {}

@@ -9,7 +9,7 @@ resource "aws_rds_cluster" "main" {
   final_snapshot_identifier    = "${uuid()}"
 
   vpc_security_ids = [
-    "${split(",", var.vpc_security_ids)}",
+    "${split(",", var.vpc_security_group_ids)}",
   ]
 
   lifecycle {
