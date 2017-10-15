@@ -9,7 +9,7 @@ resource "aws_rds_cluster" "main" {
   final_snapshot_identifier    = "${uuid()}"
 
   vpc_security_ids = [
-    "${split(",", var.vpc_security_group_ids)}",
+    "${aws_security_group.main.id}",
   ]
 
   lifecycle {
@@ -49,6 +49,24 @@ resource "aws_db_subnet_group" "main" {
   subnet_ids = [
     "${split(",", var.subnet_ids)}",
   ]
+
+  tags {
+    Budget      = "${var.budget}"
+    Environment = "${var.environment}"
+  }
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
+resource "aws_security_group" "main" {
+  ingress {
+    from_port = 3306
+    to_port   = 3306
+    protocol  = "tcp"
+    self      = true
+  }
 
   tags {
     Budget      = "${var.budget}"
