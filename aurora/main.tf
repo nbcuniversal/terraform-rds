@@ -5,10 +5,10 @@ resource "aws_rds_cluster" "main" {
   backup_retention_period      = "${var.backup_retention_period}"
   preferred_backup_window      = "02:00-03:00"
   preferred_maintenance_window = "wed:03:00-wed:04:00"
-  db_subnet_group              = "${aws_db_subnet_group.main.name}"
+  db_subnet_group_name         = "${aws_db_subnet_group.main.name}"
   final_snapshot_identifier    = "${uuid()}"
 
-  vpc_security_ids = [
+  vpc_security_group_ids = [
     "${aws_security_group.main.id}",
   ]
 
